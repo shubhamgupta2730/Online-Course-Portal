@@ -33,11 +33,11 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thepranaygupta/react-tailwind-css-starter-pack.git"
+    "url": "https://github.com/shubhamgupta2730/Online-Course-Portal"
   },
   "author": "Web Spirits",
   "bugs": {
-    "url": "https://github.com/thepranaygupta/react-tailwind-css-starter-pack/issues"
+    "url": "https://github.com/shubhamgupta2730/Online-Course-Portal"
   },
   "scripts": {
     "start": "react-scripts start",
