@@ -8,8 +8,7 @@ import FoundingStory from "../assets/Images/FoundingStory.png"
 // import StatsComponent from '../Components/core/AboutPage/Stats'
 import LearningGrid from '../Components/core/AboutPage/LearningGrid'
 import ContactFormSection from '../Components/core/AboutPage/ContactFormSection'
-import Footer from '../Components/common/Footer'
-import RatingSlider from '../Components/core/Ratings/RatingSlider';
+
 
 const About = () => {
   return (
@@ -25,7 +24,7 @@ const About = () => {
             <div className='sm:h-[70px] lg:h-[150px]'></div>
             <div className='absolute bottom-0 left-[85%] grid w-[100%] translate-x-[-50%] translate-y-[30%] grid-cols-3 gap-3 lg:gap-5'>
                 {/* <img src={BannerImage1} /> */}
-                <img src={BannerImage2} />
+                <img src={BannerImage2} alt='' />
                 {/* <img src={BannerImage3} /> */}
             </div>
         </div>
@@ -55,27 +54,15 @@ const About = () => {
 
                    
                 </div>
-                {/* foudning story right box */}
+               
                 <div>
-                    <img className=''  src={FoundingStory} />
+                    <img className=''  src={FoundingStory} alt='Loading' />
                 </div>
             </div>
 
-            {/* vision and mission wala parent div */}
+         
             <div className='flex flex-col items-center lg:gap-10 lg:flex-row justify-between'>
-                {/* left box */}
-                <div className='my-24 flex lg:w-[40%] flex-col gap-10'>
-                    <h1 className='bg-gradient-to-b from-[#FF512F] to-[#F09819] bg-clip-text text-4xl font-semibold text-transparent lg:w-[70%] '>Our Vision</h1>
-                    <p className='text-base font-medium text-richblack-300 lg:w-[95%]'>With this vision in mind, we set out on a journey to create an e-learning platform that would revolutionize the way people learn. Our team of dedicated experts worked tirelessly to develop a robust and intuitive platform that combines cutting-edge technology with engaging content, fostering a dynamic and interactive learning experience.</p>
-                </div>
-
-                {/* right box */}
-                <div className='my-24 flex lg:w-[40%] flex-col gap-10'>
-                    <h1 className='bg-gradient-to-b from-[#1FA2FF] via-[#12D8FA] to-[#A6FFCB] text-transparent bg-clip-text text-4xl font-semibold lg:w-[70%] '>
-                        Our Mission
-                    </h1>
-                    <p className='text-base font-medium text-richblack-300 lg:w-[95%]'>Our mission goes beyond just delivering courses online. We wanted to create a vibrant community of learners, where individuals can connect, collaborate, and learn from one another. We believe that knowledge thrives in an environment of sharing and dialogue, and we foster this spirit of collaboration through forums, live sessions, and networking opportunities.</p>
-                </div>
+           
             </div>
         </div>
       </section>  
@@ -88,12 +75,7 @@ const About = () => {
         <ContactFormSection />
       </section>
 
-      <section>
-      <div className=' mb-16 mt-3 w-screen'>
-        <h2 className='text-center text-4xl font-semibold mt-8 text-richblack-5 mb-5'>Reviews from other learners</h2>
-        <RatingSlider />
-      </div>
-      </section>
+    
 
     </div>
   )

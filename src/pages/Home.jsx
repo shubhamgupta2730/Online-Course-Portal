@@ -39,7 +39,7 @@ function Home() {
     <div>
         <div className=' mx-auto relative flex flex-col w-11/12 items-center justify-between text-white '>
             <Link onClick={()=>{dispatch(setProgress(100))}}  to={"/signup"}>
-            <div className=' group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold transition-all duration-200 hover: scale-95 w-fit max-w-maxContent'>
+            <div className=' group mt-16 p-1 mx-auto rounded-full bg-richblack-900 font-bold transition-all duration-200 hover: scale-95 w-fit max-w-maxContent'>
                
             </div>
             </Link>
@@ -51,7 +51,7 @@ function Home() {
 
             <div className='flex flex-row gap-7 mt-8'>
                 <CTAButton active={true} linkto={"/signup"}>
-                    Learn More
+                    Sign Up
                 </CTAButton>
                
             </div>
@@ -74,7 +74,7 @@ function Home() {
                 <div className='flex flex-row gap-5 mb-10 mt-[95px]'>
                     <div className='text-4xl font-semibold w-[100%]'>
                         Get the Skills you need for a Job that is in demand.
-                        {/* <HighlightText text={"Job that is in demand"} /> */}
+                     
                     </div>
 
                 

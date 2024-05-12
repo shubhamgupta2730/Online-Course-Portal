@@ -130,7 +130,7 @@ async function verifypament (response,courses,token,navigate,dispatch,) {
             return;
         }
 
-        toast.success("Payment Successfull");
+        toast.success("Payment Successful");
         navigate("/dashboard/enrolled-courses");
         dispatch(resetCart());
     }
