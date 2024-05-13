@@ -11,64 +11,103 @@ import Tab from "../../common/Tab"
 import {setProgress} from "../../../slices/loadingBarSlice"
 
 function SignupForm() {
-  const navigate = useNavigate()
-  const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  // student or instructor
-  const [accountType, setAccountType] = useState(ACCOUNT_TYPE.STUDENT)
+  const [accountType, setAccountType] = useState(ACCOUNT_TYPE.STUDENT);
 
   const [formData, setFormData] = useState({
     firstName: "",
-    lastName: "",
+    lastName: "", // Make last name optional
     email: "",
     password: "",
     confirmPassword: "",
-  })
+  });
 
-  const [showPassword, setShowPassword] = useState(false)
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
-  const { firstName, lastName, email, password, confirmPassword } = formData
+  const { firstName, lastName, email, password, confirmPassword } = formData;
 
-  // Handle input fields, when some value changes
   const handleOnChange = (e) => {
     setFormData((prevData) => ({
       ...prevData,
       [e.target.name]: e.target.value,
-    }))
+    }));
   }
 
-  // Handle Form Submission
   const handleOnSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
-    if (password !== confirmPassword) {
-      toast.error("Passwords Do Not Match")
-      return
+    // First Name Validation (no spaces between letters)
+    if (!firstName.trim()) {
+      toast.error("Please enter your first name");
+      return;
     }
+    if (!/^[a-zA-Z]+$/.test(firstName.trim())) {
+      toast.error("First name should contain only letters without spaces");
+      return;
+    }
+
+    // Last Name Validation (no spaces between letters, optional)
+    if (lastName.trim() && !/^[a-zA-Z]+$/.test(lastName.trim())) {
+      toast.error("Last name should contain only letters without spaces");
+      return;
+    }
+
+    // Email Validation
+    if (!email.trim()) {
+      toast.error("Please enter your email");
+      return;
+    }
+    if (!/\b[A-Za-z0-9._%+-]+@gmail\.com\b/.test(email.trim())) {
+      toast.error("Please enter a valid Gmail address");
+      return;
+    }
+
+    // Password Validation
+    if (!password.trim()) {
+      toast.error("Please enter your password");
+      return;
+    }
+    if (password.length < 5) {
+      toast.error("Password must be at least 5 characters long");
+      return;
+    }
+
+    if (password.includes(" ")) {
+      toast.error("Password cannot contain spaces");
+      return;
+    }
+
+    // Confirm Password Validation
+    if (password !== confirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+
+    // All validations passed, proceed with signup
     const signupData = {
       ...formData,
       accountType,
-    }
+    };
 
     // Setting signup data to state
-    // To be used after otp verification
-    dispatch(setSignupData(signupData))
+    dispatch(setSignupData(signupData));
     // Send OTP to user for verification
-    dispatch(sendOtp(formData.email, navigate))
+    dispatch(sendOtp(formData.email, navigate));
 
-    // Reset
+    // Reset form fields
     setFormData({
       firstName: "",
-      lastName: "",
+      lastName: "", // Reset last name too
       email: "",
       password: "",
       confirmPassword: "",
-    })
-    setAccountType(ACCOUNT_TYPE.STUDENT)
-  }
+    });
+    setAccountType(ACCOUNT_TYPE.STUDENT);
+  };
 
-  // data to pass to Tab component
   const tabData = [
     {
       id: 1,
@@ -80,7 +119,7 @@ function SignupForm() {
       tabName: "Instructor",
       type: ACCOUNT_TYPE.INSTRUCTOR,
     },
-  ]
+  ];
 
   return (
     <div>
@@ -108,10 +147,9 @@ function SignupForm() {
           </label>
           <label>
             <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5">
-              Last Name <sup className="text-pink-200">*</sup>
+              Last Name <sup className="text-pink-200"></sup>
             </p>
             <input
-              required
               type="text"
               name="lastName"
               value={lastName}

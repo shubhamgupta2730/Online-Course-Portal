@@ -11,7 +11,7 @@ exports.createRating = async (req,res)=>{
      studentsEnrolled: {$elemMatch:{$eq:userId}}});
  
      if(!courseDetails){
-         return res.status(404).json({success:false,emessage: "Student not enrolled in course"});
+         return res.status(404).json({success:false, message: "Student not enrolled in course"});
      };
      const alreadyReviewed =await RatingAndReview.findOne({user:userId,
      course:courseId});

@@ -4,30 +4,49 @@ const mongoose = require("mongoose");
 // Define the user schema using the Mongoose Schema constructor
 const userSchema = new mongoose.Schema(
 	{
-		// Define the name field with type String, required, and trimmed
+
 		firstName: {
 			type: String,
 			required: true,
 			trim: true,
+			validate: {
+				validator: function (v) {
+					return /^[a-zA-Z ]+$/.test(v); // Validate that it contains only letters
+				},
+				message: props => `${props.value} is not a valid first name`
+			}
 		},
+
 		lastName: {
 			type: String,
-			required: true,
 			trim: true,
+			validate: {
+				validator: function (v) {
+					return /^[a-zA-Z ]+$/.test(v); // Validate that it contains only letters 
+				},
+				message: props => `${props.value} is not a valid last name`
+			}
 		},
-		// Define the email field with type String, required, and trimmed
+
 		email: {
 			type: String,
 			required: true,
 			trim: true,
+			validate: {
+				validator: function (v) {
+					// Basic email format validation
+					return /\b[A-Za-z0-9._%+-]+@gmail\.com\b/.test(v);
+				},
+				message: props => `${props.value} is not a valid Gmail address`
+			}
 		},
 
-		// Define the password field with type String and required
 		password: {
 			type: String,
 			required: true,
+			minlength: 5, // Minimum length validation
 		},
-		// Define the role field with type String and enum values of "Admin", "Student", or "Visitor"
+
 		accountType: {
 			type: String,
 			enum: ["Admin", "Student", "Instructor"],
@@ -68,11 +87,9 @@ const userSchema = new mongoose.Schema(
 				ref: "courseProgress",
 			},
 		],
-
-		// Add timestamps for when the document is created and last modified
 	},
 	{ timestamps: true }
 );
 
-// Export the Mongoose model for the user schema, using the name "user"
+
 module.exports = mongoose.model("user", userSchema);

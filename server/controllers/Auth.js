@@ -20,13 +20,11 @@ exports.signup = async (req, res) => {
 			password,
 			confirmPassword,
 			accountType,
-			contactNumber,
 			otp,
 		} = req.body;
 		// Check if All Details are there or not
 		if (
 			!firstName ||
-			!lastName ||
 			!email ||
 			!password ||
 			!confirmPassword ||
@@ -37,6 +35,22 @@ exports.signup = async (req, res) => {
 				message: "All Fields are required",
 			});
 		}
+
+		// Password length validation
+		if (password.length < 5) {
+			return res.status(400).json({
+				success: false,
+				message: "Password must be at least 5 characters long",
+			});
+		}
+
+		if (password.includes(" ")) {
+			return res.status(400).json({
+				success: false,
+				message: "Password cannot contain spaces",
+			});
+		}
+
 		// Check if password and confirm password match
 		if (password !== confirmPassword) {
 			return res.status(400).json({
@@ -244,13 +258,13 @@ exports.changePassword = async (req, res) => {
 			oldPassword,
 			userDetails.password
 		);
-		if(oldPassword === newPassword){
+		if (oldPassword === newPassword) {
 			return res.status(400).json({
 				success: false,
 				message: "New Password cannot be same as Old Password",
 			});
 		}
-		
+
 		if (!isPasswordMatch) {
 			// If old password does not match, return a 401 (Unauthorized) error
 			return res

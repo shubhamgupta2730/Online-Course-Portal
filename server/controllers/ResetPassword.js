@@ -51,12 +51,36 @@ exports.resetPassword = async (req, res) => {
 	try {
 		const { password, confirmPassword, token } = req.body;
 
+		// Password Validation
+		if (!password.trim()) {
+			return res.json({
+				success: false,
+				message: "Please enter your password",
+			});
+		}
+
+		if (password.includes(" ")) {
+			return res.json({
+				success: false,
+				message: "Password cannot contain spaces",
+			});
+		}
+
+		if (password.length < 5) {
+			return res.json({
+				success: false,
+				message: "Password must be at least 5 characters long",
+			});
+		}
+
+		// Confirm Password Validation
 		if (confirmPassword !== password) {
 			return res.json({
 				success: false,
-				message: "Password and Confirm Password Does not Match",
+				message: "Password and Confirm Password do not match",
 			});
 		}
+
 		const userDetails = await User.findOne({ token: token });
 		if (!userDetails) {
 			return res.json({
