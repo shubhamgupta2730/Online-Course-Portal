@@ -56,7 +56,7 @@ export async function buyCourse (token, courses, userDetails, navigate, dispatch
         order_id: orderResponse.data.orderId,
         name: "Online Course Portal",
         description: "Thank you for purchasing the course",
-        image: rzplogo,
+       // image: rzplogo,
         prefill: {
             name: userDetails?.firstName + " " + userDetails?.lastName,
             email: userDetails?.email,
