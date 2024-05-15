@@ -42,6 +42,33 @@ To get started with our Online Course Portal:
 
    **Note:** The application is running on `localhost:3000`.
 
+   ## Deployment Details 🚀
+
+### Server Deployment:
+
+The backend server of our Online Course Portal is deployed on [Render](https://render.com/). Render offers a scalable and reliable platform for hosting web applications and services.
+
+- **Server URL:** [Online Course Portal Server](https://online-course-portal-pv7j.onrender.com)
+- **Deployment Steps:**
+  1. Sign up or log in to your Render account.
+  2. Follow Render's documentation to deploy a Node.js application.
+  3. Configure environment variables such as database connection, Razorpay secret, and JWT secret in Render's dashboard.
+  4. Once configured, deploy your server application.
+
+### Frontend Deployment:
+
+The frontend of our Online Course Portal is deployed on [Vercel](https://vercel.com/). Vercel provides a fast and efficient platform for hosting static websites and frontend applications.
+
+- **Frontend URL:** [Online Course Portal Frontend](https://online-course-portal-gules.vercel.app/)
+- **Deployment Steps:**
+  1. Sign up or log in to your Vercel account.
+  2. Follow Vercel's documentation to deploy a React.js application.
+  3. Configure environment variables such as database connection, Razorpay secret, and JWT secret in Vercel's dashboard or using environment files.
+  4. Once configured, deploy your frontend application.
+
+By deploying the server on Render and the frontend on Vercel, we ensure high availability and performance for our Online Course Portal, providing users with a seamless learning experience.
+
+
 ## Contributing 🤝
 
 We welcome contributions from the community to improve and enhance our Online Course Portal. Feel free to fork the repository, make changes, and submit pull requests.
